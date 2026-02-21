@@ -11,6 +11,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from modules.routes import router as channels_router
+from modules.outreach_routes import router as outreach_router
+from modules.partner_routes import partner_router
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -28,11 +30,11 @@ logger = logging.getLogger(__name__)
 def create_app() -> FastAPI:
     """Instantiate and configure the FastAPI application."""
     application = FastAPI(
-        title="MotherSource AI — Service 1: Mother Onboarding Finder",
+        title="MotherSource AI — Services 1, 2 & 3",
         description=(
-            "Accepts a district, demographic type, and outreach need; "
-            "performs hybrid pgvector search; returns the Top-4 healthcare "
-            "channels ranked and explained by GPT-4o."
+            "Service 1: Mother Onboarding Finder | "
+            "Service 2: Funding & Partnership Scout | "
+            "Service 3: Smart Outreach Generator"
         ),
         version="1.0.0",
         docs_url="/docs",
@@ -50,6 +52,8 @@ def create_app() -> FastAPI:
 
     # ── Routers ───────────────────────────────────────────────────────────
     application.include_router(channels_router, prefix="/api/v1")
+    application.include_router(outreach_router, prefix="/api/v1")
+    application.include_router(partner_router, prefix="/api/v1")
 
     @application.get("/health", tags=["Health"])
     async def health_check() -> dict[str, str]:
