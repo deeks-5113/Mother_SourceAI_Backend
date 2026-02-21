@@ -5,7 +5,7 @@ Data-access layer for Supabase interactions.
 """
 
 import logging
-from typing import Any, List
+from typing import Any, Dict, List
 from supabase import Client
 
 logger = logging.getLogger(__name__)
@@ -91,3 +91,39 @@ class ChannelRepository:
             )
 
         return candidates
+
+    # -------------------------------------------------------------------------
+    # Service 3 — fetch a single entity by primary key
+    # -------------------------------------------------------------------------
+    async def get_entity_by_id(self, entity_id: str) -> Dict[str, Any]:
+        """
+        Fetch a single row from the `entities` table by UUID.
+
+        Raises
+        ------
+        ValueError
+            If no entity with the given ID exists (router maps this to HTTP 404).
+        RuntimeError
+            If the Supabase call itself fails (router maps this to HTTP 503).
+        """
+        logger.info("Fetching entity by id=%s", entity_id)
+        try:
+            response = (
+                self._client.table("entities")
+                .select("*")
+                .eq("id", entity_id)
+                .single()
+                .execute()
+            )
+        except Exception as exc:
+            # .single() raises PostgREST APIError when 0 rows match
+            error_msg = str(exc).lower()
+            if "no rows" in error_msg or "406" in error_msg or "pgrst116" in error_msg:
+                raise ValueError(f"Entity with id='{entity_id}' not found.") from exc
+            raise RuntimeError(f"Supabase query failed: {exc}") from exc
+
+        if response.data is None:
+            raise ValueError(f"Entity with id='{entity_id}' not found.")
+
+        logger.info("Fetched entity: %s", response.data.get("title", entity_id))
+        return response.data
