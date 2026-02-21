@@ -1,0 +1,641 @@
+{
+    "document_structure": [
+        {
+            "level": "H1",
+            "title": "Medical colleges in Andhra Pradesh",
+            "semantic_summary": "District-wise listing of medical colleges across Andhra Pradesh, with college-level details for database ingestion.",
+            "children": [
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in NTR District",
+                    "semantic_summary": "Details regarding medical education institutions located in NTR District, specifically focusing on Government Siddhartha Medical College and Nimra Institute of Medical Sciences.",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "Government Siddhartha Medical College",
+                            "semantic_summary": "Information about Government Siddhartha Medical College in Vijayawada, a state-run institution established in 1980 offering MBBS and super-specialty courses.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Gunadala, Vijayawada, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS), postgraduate (MD, MS), and super-specialty medical courses across various branches such as General Medicine, General Surgery, Pediatrics, Cardiology, and Obstetrics \u0026 Gynecology."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Originally established in 1980 by the Siddhartha Academy and later transferred to the Government of Andhra Pradesh. Affiliated with Dr. NTR University of Health Sciences, this state-run college is recognized by the National Medical Commission (NMC). It is attached to the Government General Hospital (GGH) Vijayawada, ensuring extensive clinical exposure and practical training for its students."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: NTR District"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Nimra Institute of Medical Sciences",
+                            "semantic_summary": "Details regarding Nimra Institute of Medical Sciences, a private minority college established in 2016 in Ibrahimpatnam Mandal.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Nimra Nagar, Jupudi Village, Ibrahimpatnam Mandal, Vijayawada, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) medical programs."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 2016 as a private, religious minority (Muslim) medical college run by the Nimra Educational Society. It is affiliated with Dr. NTR University of Health Sciences and features a 420-bed teaching hospital right on campus, providing healthcare services to the surrounding communities and hands-on clinical training for its students."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: NTR District"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Rural"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in East Godavari",
+                    "semantic_summary": "Overview of medical colleges in the historical and reorganized East Godavari region, covering GSL Medical College, Government Medical College Rajamahendravaram, Rangaraya Medical College, and Konaseema Institute (KIMS).",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "GSL Medical College \u0026 General Hospital",
+                            "semantic_summary": "Profile of GSL Medical College in Rajamahendravaram, a private trust college established in 1999 known for its massive multi-specialty teaching hospital.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: NH-16, Laxmipuram, Rajanagaram Mandal, Rajamahendravaram, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS), postgraduate (MD, MS), and super-specialty programs across various medical and surgical disciplines."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 1999, it is a prominent private medical trust college featuring a massive multi-specialty teaching hospital. It provides robust clinical exposure to students, is recognized by the National Medical Commission (NMC), and is affiliated with Dr. YSR University of Health Sciences."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: East Godavari"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Rural"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Government Medical College, Rajamahendravaram",
+                            "semantic_summary": "Information on the newly established Government Medical College in Rajamahendravaram, part of the Nadu-Nedu initiative.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Rajamahendravaram (Rajahmundry), Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Currently offers undergraduate (MBBS) programs."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: A newly established state-run medical college launched under the state government\u0027s \"Nadu-Nedu\" initiative to revamp and decentralize healthcare infrastructure. It is equipped with modern academic facilities and is affiliated with Dr. YSR University of Health Sciences."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: East Godavari"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Rangaraya Medical College",
+                            "semantic_summary": "Details about Rangaraya Medical College in Kakinada, a prestigious government college established in 1958.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Pithapuram Road, Kakinada, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers MBBS, postgraduate (MD, MS), and super-specialty programs (DM, M.Ch) in fields such as Neonatology."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 1958, it is one of the oldest and most prestigious government medical colleges in Andhra Pradesh. It was initially started by a private society before being taken over by the government. It is attached to the massive Government General Hospital (GGH) Kakinada, offering extensive clinical training."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Kakinada (Historically undivided East Godavari)"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Konaseema Institute of Medical Sciences \u0026 Research Foundation (KIMS)",
+                            "semantic_summary": "Information on KIMS in Amalapuram, a private institution serving rural villages in the Konaseema region.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: NH-216, Chaitanya Nagar, Amalapuram, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) medical programs."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: An ISO-certified premier private medical institution and super-specialty hospital. It plays a vital role in providing advanced healthcare to over 200 rural villages in the Konaseema region while delivering high-quality medical education."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Dr. B.R. Ambedkar Konaseema (Historically undivided East Godavari)"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in Visakhapatnam",
+                    "semantic_summary": "Comprehensive list of medical colleges in Visakhapatnam, including Andhra Medical College, GITAM Institute, Gayatri Vidya Parishad, and NRI Institute.",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "Andhra Medical College (AMC)",
+                            "semantic_summary": "Profile of Andhra Medical College, established in 1923, the oldest government medical college in the state attached to King George Hospital.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Maharanipeta, Visakhapatnam, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS), postgraduate (MD, MS, Diploma), and super-specialty (DM, M.Ch) programs across a wide array of clinical and non-clinical branches."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 1923, AMC is the oldest and one of the most prestigious government medical colleges in Andhra Pradesh. It is attached to the historic King George Hospital (KGH), which acts as a massive tertiary care referral center for several districts and neighboring states. Recognized by the National Medical Commission (NMC) and affiliated with Dr. YSR University of Health Sciences, it provides unparalleled clinical exposure."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Visakhapatnam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "GITAM Institute of Medical Sciences and Research (GIMSR)",
+                            "semantic_summary": "Details regarding GIMSR, the first private deemed university medical college in Andhra Pradesh, established in 2015.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Rushikonda, Visakhapatnam, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) programs in multiple specialties."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 2015, it is the first deemed university medical college in the private sector in Andhra Pradesh. Set on a scenic campus near the coast, it features modern infrastructure, advanced research laboratories, and an attached multi-specialty teaching hospital that emphasizes high-quality healthcare and competitive medical education."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Visakhapatnam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Gayatri Vidya Parishad (GVP) Institute of Health Care and Medical Technology",
+                            "semantic_summary": "Information about the GVP Institute, a private college established in 2016 by the Gayatri Vidya Parishad society.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Maridi Valley, Kommadi, Madhurawada, Visakhapatnam, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) medical programs."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Founded in 2016 by the reputed Gayatri Vidya Parishad educational society, this private institution integrates modern medical pedagogy with robust clinical training. It features a fully equipped teaching hospital right on campus, delivering comprehensive patient care to the surrounding urban and semi-urban populations."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Visakhapatnam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "NRI Institute of Medical Sciences (NRIIMS)",
+                            "semantic_summary": "Details on NRIIMS in Sangivalasa, a private college attached to the 1,000-bed Anil Neerukonda Hospital.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Sangivalasa, Bheemunipatnam (Bheemili) Mandal, Visakhapatnam, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) programs."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 2012, this prominent private medical college is attached to the Anil Neerukonda Hospital, a facility with over 1,000 beds. It is known for its strong academic framework and extensive healthcare outreach, providing high-quality medical services to the suburban and rural communities on the outskirts of Visakhapatnam."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Visakhapatnam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Rural"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in Sri Potti Sriramulu (SPSR) Nellore",
+                    "semantic_summary": "Overview of primary medical colleges in SPSR Nellore, highlighting ACSR Government Medical College and Narayana Medical College.",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "ACSR Government Medical College",
+                            "semantic_summary": "Information about ACSR Govt Medical College, a state-run institution established in 2014 attached to DSR District Headquarters Hospital.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Dargamitta, Opp. A.C. Subbareddy Stadium, Nellore, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) medical programs across clinical and non-clinical branches."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 2014 by the Government of Andhra Pradesh, this is a prestigious state-run medical institution recognized by the National Medical Commission (NMC). Affiliated with Dr. YSR University of Health Sciences, it is attached to the historic DSR District Headquarters Hospital, ensuring extensive clinical exposure for students and serving as a major healthcare hub for the region."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Sri Potti Sriramulu Nellore"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Narayana Medical College and Hospital",
+                            "semantic_summary": "Details on Narayana Medical College, a top-tier private institution established in 2000 with a massive campus and super-specialty courses.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Chinthareddypalem, Nellore, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers a comprehensive range of programs including undergraduate (MBBS), postgraduate (MD, MS, Diploma), and super-specialty courses (DM, M.Ch) across diverse medical and surgical disciplines."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Founded in 2000, this is a top-tier private medical institution renowned for its state-of-the-art infrastructure, massive campus, and advanced research facilities. Affiliated with Dr. YSR University of Health Sciences, the college is associated with the expansive Narayana General Hospital, which delivers highly specialized patient care and provides robust hands-on clinical training to future healthcare professionals."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Sri Potti Sriramulu Nellore"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in Prakasam",
+                    "semantic_summary": "Details on the medical education infrastructure in Prakasam district, covering the Government Medical Colleges in Ongole and Markapur.",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "Government Medical College, Ongole (Formerly RIMS Ongole)",
+                            "semantic_summary": "Profile of GMC Ongole (formerly RIMS), established in 2011 and attached to the 700+ bed Government General Hospital.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Bhagyanagar 5th Lane, Kurnool Road, Ongole, Andhra Pradesh - 523001."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) medical programs across various clinical, para-clinical, and non-clinical specialties."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 2011 (originally as the Rajiv Gandhi Institute of Medical Sciences), this premier state-run institution is affiliated with Dr. YSR University of Health Sciences and recognized by the National Medical Commission (NMC). It is attached to the massive Government General Hospital (GGH) Ongole, a 700+ bed facility that serves as the primary tertiary healthcare hub for the district and provides comprehensive clinical training for its students."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Prakasam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Government Medical College, Markapur",
+                            "semantic_summary": "Information about the new Government Medical College in Markapur, established to decentralize healthcare in western Prakasam.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Markapur, Prakasam District, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Currently focused on its undergraduate (MBBS) program."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: This is a newly established state government medical college, inaugurated as part of the Andhra Pradesh government\u0027s recent initiative to establish a medical college in every parliamentary constituency. Affiliated with Dr. YSR University of Health Sciences, it aims to decentralize medical education and bring advanced secondary and tertiary healthcare facilities to the western region of the Prakasam district."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Prakasam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban / Semi-urban"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in Kakinada",
+                    "semantic_summary": "Focuses on Rangaraya Medical College as the major medical institution in the newly reorganized Kakinada district.",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "Rangaraya Medical College",
+                            "semantic_summary": "Detailed profile of Rangaraya Medical College in Kakinada, a key healthcare cornerstone serving coastal Andhra since 1958.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Pithapuram Road, Kakinada, Andhra Pradesh - 533001."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS), postgraduate (MD, MS, Diploma), and super-specialty (DM, M.Ch) programs across a comprehensive range of clinical, para-clinical, and non-clinical branches."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 1958, this is a highly prestigious government medical college and a cornerstone of healthcare and education in coastal Andhra. Affiliated with Dr. YSR University of Health Sciences and recognized by the National Medical Commission (NMC), it is attached to the Government General Hospital (GGH) Kakinada. This massive 1,200+ bed tertiary care center serves patients from across the district and provides students with exceptional, hands-on clinical exposure."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Kakinada"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in Vizianagaram",
+                    "semantic_summary": "Overview of medical colleges in Vizianagaram, consisting of the new Government Medical College and the private Maharajah\u0027s Institute (MIMS).",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "Government Medical College, Vizianagaram",
+                            "semantic_summary": "Details on the Government Medical College in Vizianagaram, established to strengthen district-level infrastructure and attached to the upgraded GGH.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Gajularega Road, Near JNTU Junction, Vizianagaram, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Currently offers the undergraduate (MBBS) medical program."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established as part of the Andhra Pradesh government\u0027s recent \"Nadu-Nedu\" initiative to strengthen district-level healthcare infrastructure. Recognized by the National Medical Commission (NMC) and affiliated with Dr. YSR University of Health Sciences, the college is attached to the upgraded Government General Hospital (GGH) Vizianagaram. This attached teaching hospital provides crucial tertiary care to the district and essential clinical exposure for the students."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Vizianagaram"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Maharajah\u0027s Institute of Medical Sciences (MIMS)",
+                            "semantic_summary": "Information about MIMS in Nellimarla, a private institution founded in 2002 featuring a 700+ bed multi-specialty teaching hospital.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: 31-15, Near MDO Office, Nellimarla, Vizianagaram District, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) programs across a wide range of clinical, para-clinical, and pre-clinical specialties."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Founded in 2002 by the Sri Rama Educational Trust, MIMS is a well-established private medical institution. Affiliated with Dr. YSR University of Health Sciences, it features a massive 700+ bed multi-specialty teaching hospital on a sprawling campus. The hospital actively serves the healthcare needs of the surrounding communities while delivering robust, hands-on clinical training to future medical professionals."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Vizianagaram"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Rural / Semi-urban"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in Srikakulam",
+                    "semantic_summary": "Details regarding medical education in Srikakulam, covering the Government Medical College and Great Eastern Medical School (GEMS).",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "Government Medical College, Srikakulam",
+                            "semantic_summary": "Profile of Government Medical College Srikakulam (formerly RIMS), a premier state-run institution in the Uttarandhra region.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Shanti Nagar Colony, Balaga, Srikakulam, Andhra Pradesh - 532001."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and postgraduate (MD, MS) medical programs across pre-clinical, para-clinical, and clinical disciplines."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Originally established in 2008 as the Rajiv Gandhi Institute of Medical Sciences (RIMS) and later renamed to Government Medical College, it is a premier state-run institution in the Uttarandhra region. Affiliated with Dr. YSR University of Health Sciences and recognized by the National Medical Commission (NMC), the college is attached to a multi-specialty teaching hospital that serves the healthcare needs of the district and provides comprehensive clinical training for its students."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Srikakulam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Great Eastern Medical School and Hospital (GEMS)",
+                            "semantic_summary": "Information about GEMS in Ragolu Village, a private college established in 2004 serving rural and semi-urban populations.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Aditya Educational Society, Ragolu Village, Srikakulam, Andhra Pradesh - 532484."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers a wide range of undergraduate (MBBS) and postgraduate (MD, MS) programs."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 2004, GEMS is a prominent private medical college and hospital. It is affiliated with Dr. YSR University of Health Sciences and recognized by the NMC. The sprawling campus houses a highly equipped teaching hospital that not only imparts hands-on clinical exposure to medical students but also acts as a critical healthcare center for the surrounding rural and semi-urban populations."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Srikakulam"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Rural"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "level": "H2",
+                    "title": "Medical colleges in Krishna",
+                    "semantic_summary": "Overview of medical colleges in the current Krishna district boundaries, featuring the new Government Medical College in Machilipatnam and Dr. Pinnamaneni Siddhartha Institute.",
+                    "children": [
+                        {
+                            "level": "H3",
+                            "title": "Government Medical College, Machilipatnam",
+                            "semantic_summary": "Details on GMC Machilipatnam, inaugurated in 2023 under the Nadu-Nedu initiative and attached to the upgraded GGH.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Near Radar Station, Karagraharam, Machilipatnam, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Currently offers the undergraduate (MBBS) medical program."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Inaugurated in 2023 under the state government\u0027s \"Nadu-Nedu\" initiative to strengthen district-level medical infrastructure. Affiliated with Dr. YSR University of Health Sciences and recognized by the National Medical Commission (NMC), it is attached to the upgraded 550+ bed Government General Hospital (GGH) in Machilipatnam. This setup provides strong, hands-on clinical exposure with a focus on coastal and semi-urban healthcare."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Krishna"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Urban"
+                                }
+                            ]
+                        },
+                        {
+                            "level": "H3",
+                            "title": "Dr. Pinnamaneni Siddhartha Institute of Medical Sciences \u0026 Research Foundation (Dr. PSIMS \u0026 RF)",
+                            "semantic_summary": "Information about Dr. PSIMS \u0026 RF in Chinna Avutapalli, a reputed private institution established by the Siddhartha Academy.",
+                            "chunks": [
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Address: Chinna Avutapalli, Gannavaram Mandal, Krishna District, Andhra Pradesh."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Specialisation: Offers undergraduate (MBBS) and a wide range of postgraduate (MD, MS, Diploma) medical programs across clinical, para-clinical, and pre-clinical disciplines."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "About it: Established in 2002 by the Siddhartha Academy, this is a highly reputed private medical institution. It boasts an expansive campus equipped with a modern, multi-specialty teaching hospital. Recognized by the NMC and affiliated with Dr. YSR University of Health Sciences, the hospital actively serves the healthcare needs of the surrounding communities while delivering top-tier clinical training for future medical professionals."
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "District: Krishna"
+                                },
+                                {
+                                    "source_id": "n/a",
+                                    "text": "Environment: Rural / Semi-urban"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

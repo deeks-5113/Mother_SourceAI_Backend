@@ -1,0 +1,29 @@
+2026-02-22 00:53:18,942 | INFO     | main — Logging configured with file 'debug.log'
+2026-02-22 00:53:18,944 | INFO     | main — MotherSource AI Service 1 initialised.
+2026-02-22 00:53:28,356 | INFO     | main — >>> POST /api/v1/channels/search | Body: {"district": "Hyderabad", "demographic": "Urban", "specific_need": "maternal vaccination outreach"}
+2026-02-22 00:53:28,359 | INFO     | modules.config — Initialising Supabase client for URL: https://pukjjtvwjfwtjrqeijeu.supabase.co
+2026-02-22 00:53:28,630 | INFO     | modules.config — Initialising AsyncOpenAI client.
+2026-02-22 00:53:29,388 | INFO     | httpx — HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-22 00:53:29,452 | INFO     | modules.database — Searching HRAG entities — district=Hyderabad, environment=Urban, limit=10
+2026-02-22 00:53:29,916 | INFO     | httpx — HTTP Request: POST https://pukjjtvwjfwtjrqeijeu.supabase.co/rest/v1/rpc/search_entities "HTTP/2 200 OK"
+2026-02-22 00:53:29,917 | INFO     | modules.database — Retrieved 0 candidate chunk(s) from DB.
+2026-02-22 00:53:29,917 | WARNING  | modules.database — No HRAG chunks found for district='Hyderabad' and environment='Urban'.
+2026-02-22 00:53:30,600 | INFO     | httpx — HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-22 00:53:30,606 | ERROR    | modules.routes — Unexpected error: LLM returned 0 results; expected 1-4.
+Traceback (most recent call last):
+  File "C:\Users\asus\Desktop\MS_AI\Mother_SourceAI_Backend\modules\routes.py", line 38, in search_channels
+    ranked_channels: list[ChannelResponseItem] = await service.find_top_channels(request)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asus\Desktop\MS_AI\Mother_SourceAI_Backend\modules\services.py", line 154, in find_top_channels
+    ranked_raw = await self._llm_service.rank_and_reason(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\asus\Desktop\MS_AI\Mother_SourceAI_Backend\modules\services.py", line 98, in rank_and_reason
+    return self._parse_and_validate(raw_text)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\asus\Desktop\MS_AI\Mother_SourceAI_Backend\modules\services.py", line 124, in _parse_and_validate
+    raise ValueError(f"LLM returned {len(ranked)} results; expected 1-4.")
+ValueError: LLM returned 0 results; expected 1-4.
+2026-02-22 00:53:30,608 | INFO     | main — <<< POST /api/v1/channels/search | Status: 500 | Response: {"detail":"An unexpected internal error occurred."}

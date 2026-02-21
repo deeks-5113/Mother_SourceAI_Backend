@@ -51,6 +51,7 @@ def create_app() -> FastAPI:
     # ── Routers ───────────────────────────────────────────────────────────
     application.include_router(channels_router, prefix="/api/v1")
 
+
     @application.get("/health", tags=["Health"])
     async def health_check() -> dict[str, str]:
         """Liveness probe — returns OK if the process is running."""

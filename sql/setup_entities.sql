@@ -18,7 +18,7 @@ CREATE TABLE entities (
 -- Index for vector search (HNSW for production quality)
 CREATE INDEX ON entities USING hnsw (embedding vector_cosine_ops);
 
--- RPC for hybrid search
+-- RPC for hybrid search (legacy — filters by district AND environment)
 CREATE OR REPLACE FUNCTION search_entities(
   query_embedding VECTOR(1536),
   filter_district TEXT,
@@ -54,6 +54,45 @@ BEGIN
   WHERE
     e.district = filter_district
     AND e.environment = filter_environment
+  ORDER BY e.embedding <=> query_embedding
+  LIMIT match_count;
+END;
+$$;
+
+-- RPC for district-first search (filters only by district, semantic ranking)
+CREATE OR REPLACE FUNCTION search_entities_by_district(
+  query_embedding VECTOR(1536),
+  filter_district TEXT,
+  match_count INT
+)
+RETURNS TABLE (
+  id UUID,
+  level TEXT,
+  title TEXT,
+  semantic_summary TEXT,
+  content TEXT,
+  source_id TEXT,
+  district TEXT,
+  environment TEXT,
+  similarity FLOAT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    e.id,
+    e.level,
+    e.title,
+    e.semantic_summary,
+    e.content,
+    e.source_id,
+    e.district,
+    e.environment,
+    1 - (e.embedding <=> query_embedding) AS similarity
+  FROM entities e
+  WHERE
+    e.district = filter_district
   ORDER BY e.embedding <=> query_embedding
   LIMIT match_count;
 END;

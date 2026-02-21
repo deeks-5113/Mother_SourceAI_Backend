@@ -1,0 +1,12 @@
+2026-02-22 00:53:48,377 | INFO     | main — Logging configured with file 'debug.log'
+2026-02-22 00:53:48,379 | INFO     | main — MotherSource AI Service 1 initialised.
+2026-02-22 00:54:27,250 | INFO     | main — >>> POST /api/v1/channels/search | Body: {"district": "Hyderabad", "demographic": "Urban", "specific_need": "maternal vaccination outreach"}
+2026-02-22 00:54:27,253 | INFO     | modules.config — Initialising Supabase client for URL: https://pukjjtvwjfwtjrqeijeu.supabase.co
+2026-02-22 00:54:27,525 | INFO     | modules.config — Initialising AsyncOpenAI client.
+2026-02-22 00:54:28,881 | INFO     | httpx — HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-22 00:54:28,942 | INFO     | modules.database — Searching HRAG entities — district=Hyderabad, environment=Urban, limit=10
+2026-02-22 00:54:30,211 | INFO     | httpx — HTTP Request: POST https://pukjjtvwjfwtjrqeijeu.supabase.co/rest/v1/rpc/search_entities "HTTP/2 200 OK"
+2026-02-22 00:54:30,212 | INFO     | modules.database — Retrieved 0 candidate chunk(s) from DB.
+2026-02-22 00:54:30,212 | WARNING  | modules.database — No HRAG chunks found for district='Hyderabad' and environment='Urban'.
+2026-02-22 00:54:30,212 | INFO     | modules.services — No candidates found in DB; skipping LLM ranking.
+2026-02-22 00:54:30,213 | INFO     | main — <<< POST /api/v1/channels/search | Status: 200 | Response: {"results":[],"district":"Hyderabad","demographic":"Urban"}

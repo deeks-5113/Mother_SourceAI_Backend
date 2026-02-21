@@ -144,12 +144,15 @@ class ChannelService:
     async def find_top_channels(self, request: ChannelSearchRequest) -> List[ChannelResponseItem]:
         query_vector = await self._embed_text(request.specific_need)
 
-        candidates = self._repository.search_similar_channels(
+        candidates = self._repository.search_by_district(
             query_vector=query_vector,
             district=request.district,
-            environment=request.demographic,
             limit=self._settings.candidate_pool_size,
         )
+
+        if not candidates:
+            logger.info("No candidates found in DB for district=%r; skipping LLM ranking.", request.district)
+            return []
 
         ranked_raw = await self._llm_service.rank_and_reason(
             specific_need=request.specific_need,
