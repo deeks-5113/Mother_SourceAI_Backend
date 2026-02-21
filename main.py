@@ -10,7 +10,7 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.v1.endpoints.channels import router as channels_router
+from modules.routes import router as channels_router
 
 # ---------------------------------------------------------------------------
 # Logging
