@@ -41,28 +41,27 @@ class PartnerLLMReasoner:
 
     _SYSTEM_PROMPT = """\
 You are a Strategic Grant & Partnership Evaluator supporting a maternal \
-health AI programme in India. Your task is to analyse NGO candidates from \
-a Supabase database and identify the most mission-aligned implementation \
-partners or funders.
+health AI programme in India. Your task is to analyse candidate partners \
+and funders and identify the most mission-aligned entities.
 
 RULES — read carefully:
 1. Return a JSON object with a single key "results" containing an array.
-2. The array MUST contain exactly the best 1–4 candidates (never more \
-than 4, never duplicate or invent).
-3. Each object in the array MUST have ONLY these fields:
+2. The array MUST contain exactly the best 1–4 candidates.
+3. Each object in the array MUST have these fields:
    - "ngo_id"               : string  — UUID, copy verbatim from candidates
-   - "title"                : string  — copy verbatim from candidates
-   - "city"                 : string  — copy verbatim from candidates
+   - "title"                : string  — name of the partner/funder
+   - "city"                 : string or null — if location is "Global", return null. Otherwise, return the city.
+   - "partner_type"         : string  — MUST be one of: "Global foundations", "AI for Social Good funds", "HNIs & philanthropists", "NGO", "Open grants".
    - "rank_position"        : integer — 1 (best) to 4
    - "relevance_score"      : float   — 0.0 to 1.0
-   - "inferred_capability"  : string  — infer the SPECIFIC operational or \
-funding role this NGO can play for THIS project, even if not explicitly \
-stated in their description. Be concrete (e.g. "last-mile nutrition \
-distribution network", "SHG-based micro-finance for mothers").
-   - "alignment_reasoning"  : string  — explain WHY this NGO's causes and \
-geography match the project goal. Reference adjacent ranks explicitly if \
-there are multiple candidates.
-4. Order the array by rank_position ascending (rank 1 first).
+   - "inferred_capability"  : string  — specific operational or funding role.
+   - "alignment_reasoning"  : string  — A compelling, unique explanation of WHY this specific partner was selected over others for THIS project goal.
+4. Classification Logic:
+   - Classify as "NGO" only if they are clearly a local implementation body.
+   - Classify as "Open grants" if they are bilateral/multilateral agencies (e.g., USAID).
+   - Classify as "Global foundations" for large independent global philanthropy (e.g., Wellcome Trust).
+   - Classify as "AI for Social Good funds" for corporate or tech-focused impact funds (e.g., Microsoft AI, Nvidia).
+   - Classify as "HNIs & philanthropists" for family/industrial trusts (e.g., Tata, Reliance).
 5. Do NOT add any fields beyond those listed above.
 """
 
@@ -74,15 +73,19 @@ there are multiple candidates.
         """
         Format raw DB rows into a numbered candidate list for the LLM prompt.
 
-        Each candidate shows: ID, title, city, and full content text.
+        Handles both NGO rows (title/content) and funder rows (name/description).
         """
         lines: list[str] = []
         for i, c in enumerate(candidates, start=1):
+            # NGO rows use 'title'+'content'; funder rows use 'name'+'description'
+            display_name = c.get('title') or c.get('name', 'Unknown')
+            body_text = c.get('content') or c.get('description', 'N/A')
+            city = c.get('city', 'N/A')
             lines.append(
                 f"[{i}] ngo_id={c['id']}\n"
-                f"    title={c['title']}\n"
-                f"    city={c['city']}\n"
-                f"    content={c['content']}\n"
+                f"    title={display_name}\n"
+                f"    city={city}\n"
+                f"    content={body_text}\n"
             )
         return "\n".join(lines)
 
@@ -111,7 +114,7 @@ there are multiple candidates.
             )
 
         required_keys = {
-            "ngo_id", "title", "city", "rank_position",
+            "ngo_id", "title", "city", "partner_type", "rank_position",
             "relevance_score", "inferred_capability", "alignment_reasoning",
         }
         for item in results:
@@ -189,9 +192,10 @@ class PartnerService:
     """
     Orchestrates the full Service 2 pipeline:
       1. Embed `project_goal` via OpenAI
-      2. Retrieve candidate NGOs from Supabase (via NgoRepository)
-      3. Rank & reason with GPT-4o (via PartnerLLMReasoner)
-      4. Map to PartnerSearchResponse
+      2. Retrieve candidate NGOs + Funders from Supabase
+      3. Merge & deduplicate candidates
+      4. Rank & reason with GPT-4o (via PartnerLLMReasoner)
+      5. Map to PartnerSearchResponse
     """
 
     def __init__(
@@ -224,11 +228,37 @@ class PartnerService:
                 f"Embedding generation failed: {exc}"
             ) from exc
 
+    def _merge_candidates(
+        self,
+        ngo_candidates: list[RawNgo],
+        funder_candidates: list[RawNgo],
+    ) -> list[RawNgo]:
+        """
+        Merge NGO and funder candidates, deduplicate by ID,
+        and return the combined pool (up to pool_size * 2).
+        """
+        seen_ids: set[str] = set()
+        merged: list[RawNgo] = []
+
+        for candidate in ngo_candidates + funder_candidates:
+            cid = str(candidate.get("id", ""))
+            if cid not in seen_ids:
+                seen_ids.add(cid)
+                merged.append(candidate)
+
+        logger.info(
+            "Merged candidates — %d NGO(s) + %d funder(s) = %d unique.",
+            len(ngo_candidates),
+            len(funder_candidates),
+            len(merged),
+        )
+        return merged
+
     async def find_top_partners(
         self, request: PartnerSearchRequest
     ) -> PartnerSearchResponse:
         """
-        Full pipeline: embed → search → LLM rank → Pydantic response.
+        Full pipeline: embed → search NGOs + funders → merge → LLM rank → response.
 
         Parameters
         ----------
@@ -243,7 +273,7 @@ class PartnerService:
         Raises
         ------
         ValueError
-            If no NGOs are found for the given region.
+            If no candidates found across both tables.
         RuntimeError
             If embedding, DB search, or LLM call fails.
         """
@@ -256,37 +286,52 @@ class PartnerService:
         # Step 1 — Embed the project goal
         query_vector = await self._embed_text(request.project_goal)
 
-        # Step 2 — Retrieve candidate NGOs from Supabase
-        candidates = self._repo.match_ngos_by_region(
+        # Step 2 — Retrieve candidates from BOTH tables
+        ngo_candidates = self._repo.match_ngos_by_region(
             query_vector=query_vector,
             region=request.target_region,
             limit=self._pool_size,
         )
 
+        funder_candidates: list[RawNgo] = []
+        try:
+            funder_candidates = self._repo.match_funders_by_region(
+                query_vector=query_vector,
+                region=request.target_region,
+                limit=self._pool_size,
+            )
+        except RuntimeError as exc:
+            # Funders table might not exist yet — degrade gracefully
+            logger.warning("Funder search failed (non-fatal): %s", exc)
+
+        # Step 3 — Merge & deduplicate
+        candidates = self._merge_candidates(ngo_candidates, funder_candidates)
+
         if not candidates:
             raise ValueError(
-                f"No NGOs found for region='{request.target_region}'. "
+                f"No partners or funders found for region='{request.target_region}'. "
                 "Please try a different city name."
             )
 
         logger.info(
-            "Retrieved %d candidate NGO(s) for region=%r.",
+            "Total %d candidate(s) for region=%r.",
             len(candidates),
             request.target_region,
         )
 
-        # Step 3 — LLM ranking and reasoning
+        # Step 4 — LLM ranking and reasoning
         ranked_raw = await self._llm.rank_and_reason(
             project_goal=request.project_goal,
             candidates=candidates,
         )
 
-        # Step 4 — Map to Pydantic models
+        # Step 5 — Map to Pydantic models
         results = [
             PartnerResponseItem(
                 ngo_id=item["ngo_id"],
                 title=item["title"],
-                city=item["city"],
+                city=item.get("city"),  # Optional now
+                partner_type=item["partner_type"],
                 rank_position=item["rank_position"],
                 relevance_score=item["relevance_score"],
                 inferred_capability=item["inferred_capability"],

@@ -1,0 +1,152 @@
+[
+    {
+        "name": "Wellcome Trust",
+        "city": "Global",
+        "state": "Global",
+        "focus_areas": [
+            "Global Health Research",
+            "Data for Science",
+            "Infectious Diseases",
+            "Health Equity"
+        ],
+        "level": "Global Foundation",
+        "contact_name": "Data for Science and Health Team",
+        "contact_email": "grants@wellcome.org",
+        "description": "Wellcome Trust funds discovery research and tech-driven solutions for global health challenges. They actively support projects utilizing data science, machine learning, and AI to improve health equity in low- and middle-income countries (LMICs). For maternal health, they seek scalable, ethical AI solutions that address systemic gaps in healthcare delivery, disease surveillance, and maternal mortality tracking."
+    },
+    {
+        "name": "USAID India",
+        "city": "New Delhi",
+        "state": "India",
+        "focus_areas": [
+            "Maternal and Child Survival",
+            "Health System Strengthening",
+            "Family Planning",
+            "Digital Health"
+        ],
+        "level": "Bilateral Agency",
+        "contact_name": "Health Office, USAID/India",
+        "contact_email": "indiainfo@usaid.gov",
+        "description": "USAID works closely with the Government of India to strengthen health systems, specifically targeting maternal and child survival. They fund innovative healthcare delivery models, digital health interventions for frontline workers (ASHAs), and data-driven supply chain management for nutritional supplements. Their grants heavily favor scalable pilots in states like Telangana, Andhra Pradesh, and other high-need regions."
+    },
+    {
+        "name": "Skoll Foundation",
+        "city": "Global",
+        "state": "Global",
+        "focus_areas": [
+            "Social Entrepreneurship",
+            "Healthcare Delivery",
+            "Tech for Good",
+            "Systems Change"
+        ],
+        "level": "Global Foundation",
+        "contact_name": "Skoll Award Selection Team",
+        "contact_email": "info@skoll.org",
+        "description": "The Skoll Foundation invests in social entrepreneurs driving systems change. They seek out organizations that use innovative technology, including AI and mobile platforms, to bridge gaps in primary healthcare and maternal support. They are highly interested in funding organizations that have proven a model locally (e.g., in a specific Indian state) and require catalytic capital to scale nationally."
+    },
+    {
+        "name": "Omidyar Network India",
+        "city": "Mumbai",
+        "state": "India",
+        "focus_areas": [
+            "Digital Public Infrastructure",
+            "Inclusive Tech",
+            "Data Empowerment",
+            "Next Half Billion"
+        ],
+        "level": "Impact Investor / Foundation",
+        "contact_name": "Tech & Society Team",
+        "contact_email": "info@omidyarnetwork.in",
+        "description": "Omidyar Network India focuses on the 'Next Half Billion'—the low- and lower-middle-income populations coming online for the first time. They fund Digital Public Infrastructure (DPI) and inclusive tech startups. A maternal health AI tool that functions as a public good, protects patient data privacy, and scales outreach to rural mothers aligns perfectly with their 'Tech & Society' mandate."
+    },
+    {
+        "name": "Microsoft AI for Health",
+        "city": "Global",
+        "state": "Global",
+        "focus_areas": [
+            "AI Research",
+            "Maternal Mortality",
+            "Health Equity",
+            "Data Science Compute"
+        ],
+        "level": "Corporate Foundation",
+        "contact_name": "AI for Good Grants Team",
+        "contact_email": "aiforgood@microsoft.com",
+        "description": "Microsoft's AI for Health is a philanthropic program empowering nonprofits and researchers with AI technology, Azure cloud compute, and data science resources. They have a specific mandate to tackle maternal mortality and global health equity. They fund projects that use machine learning for risk-stratification of pregnancies, NLP for health literacy, and AI to optimize rural health resources."
+    },
+    {
+        "name": "Nvidia Foundation",
+        "city": "Global",
+        "state": "Global",
+        "focus_areas": [
+            "AI for Social Impact",
+            "Accelerated Computing",
+            "Healthcare AI",
+            "Compute for Good"
+        ],
+        "level": "Corporate Foundation",
+        "contact_name": "Compute for Good Initiative",
+        "contact_email": "foundation@nvidia.com",
+        "description": "The Nvidia Foundation supports nonprofits using AI and accelerated computing to solve pressing global challenges. Through their 'Compute for Good' initiative, they provide hardware, software access, and financial grants to projects utilizing advanced AI (like large language models and predictive analytics) to revolutionize patient care, including maternal health monitoring and disease prediction."
+    },
+    {
+        "name": "Salesforce.org",
+        "city": "Global",
+        "state": "Global",
+        "focus_areas": [
+            "Nonprofit Technology",
+            "Health CRM",
+            "Community Engagement",
+            "Social Impact Tech"
+        ],
+        "level": "Corporate Foundation",
+        "contact_name": "Power of Us / Grants Team",
+        "contact_email": "foundation@salesforce.com",
+        "description": "Salesforce.org provides technology grants and funding to nonprofits to scale their impact. They are highly aligned with maternal health projects that require robust CRM capabilities to track patient journeys, manage ASHA worker deployments, and automate personalized outreach to pregnant women. They fund organizations leveraging data to improve health outcomes and operational efficiency."
+    },
+    {
+        "name": "Tata Trusts",
+        "city": "Mumbai",
+        "state": "India",
+        "focus_areas": [
+            "Maternal Health",
+            "Child Malnutrition",
+            "Rural Development",
+            "Digital Health"
+        ],
+        "level": "HNI / Philanthropist Foundation",
+        "contact_name": "Health Initiative Team",
+        "contact_email": "talktous@tatatrusts.org",
+        "description": "Tata Trusts is one of India's oldest and largest philanthropic organizations. They run massive, multi-state interventions focusing on maternal health, early childhood nutrition, and rural development. They actively collaborate with state governments in AP and Telangana and fund tech-enabled, community-based solutions that ensure the last-mile delivery of maternal care and nutritional supplements."
+    },
+    {
+        "name": "Reliance Foundation",
+        "city": "Mumbai",
+        "state": "India",
+        "focus_areas": [
+            "Women Empowerment",
+            "Rural Health",
+            "Digital Inclusion",
+            "Community Care"
+        ],
+        "level": "Corporate Foundation",
+        "contact_name": "Health Outreach Programme",
+        "contact_email": "contactus@reliancefoundation.org",
+        "description": "Reliance Foundation executes comprehensive health outreach programs via Mobile Medical Units (MMUs) and static clinics in rural India. They heavily invest in women's empowerment and maternal/neonatal health. They are increasingly focused on integrating digital technologies and AI to enhance the reach and diagnostic capabilities of their grassroots healthcare initiatives."
+    },
+    {
+        "name": "Shiv Nadar Foundation",
+        "city": "Chennai",
+        "state": "India",
+        "focus_areas": [
+            "Rural Development",
+            "Community Health",
+            "Education",
+            "Tech-driven Impact"
+        ],
+        "level": "HNI / Philanthropist Foundation",
+        "contact_name": "Grants & Initiatives",
+        "contact_email": "info@shivnadarfoundation.org",
+        "description": "While heavily focused on education, the Shiv Nadar Foundation also funds rural development and community health through initiatives like the Samuday project. They leverage technology and data-driven management to improve primary healthcare, maternal nutrition, and safe deliveries in deep rural pockets, making them an excellent partner for tech-assisted health pilot expansions."
+    }
+]

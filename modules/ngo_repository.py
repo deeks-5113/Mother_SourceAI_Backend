@@ -119,6 +119,62 @@ class NgoRepository:
         )
         return results
 
+    def match_funders_by_region(
+        self,
+        query_vector: List[float],
+        region: str,
+        limit: int = 10,
+    ) -> List[RawNgo]:
+        """
+        Call the Supabase `match_funders` RPC function (Service 2).
+
+        Returns both city-matched funders AND global funders
+        (city='Global') for any region query.
+
+        Parameters
+        ----------
+        query_vector:
+            1536-dim embedding of the project goal.
+        region:
+            Target region string — matched via ILIKE on `city`,
+            plus all Global funders automatically included.
+        limit:
+            Maximum number of candidates to return (default 10).
+
+        Returns
+        -------
+        List[RawNgo]
+            Up to `limit` funder rows ordered by cosine similarity.
+
+        Raises
+        ------
+        RuntimeError
+            If the Supabase RPC call fails.
+        """
+        logger.info(
+            "Matching funders by region — region=%r, limit=%d", region, limit
+        )
+
+        response = self._client.rpc(
+            "match_funders",
+            {
+                "query_embedding": query_vector,
+                "filter_region": region,
+                "match_count": limit,
+            },
+        ).execute()
+
+        if response.data is None:
+            raise RuntimeError("Supabase RPC 'match_funders' returned no data.")
+
+        results: List[RawNgo] = response.data
+        logger.info(
+            "match_funders_by_region — retrieved %d funder(s) for region=%r.",
+            len(results),
+            region,
+        )
+        return results
+
 
     # ------------------------------------------------------------------
     # Point lookup — used by Service 3 outreach drafting

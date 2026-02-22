@@ -7,6 +7,7 @@ Completely isolated from Service 1 (schemas.py) and Service 3
 (outreach_schemas.py) models.
 """
 
+from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 
@@ -70,15 +71,22 @@ class PartnerResponseItem(BaseModel):
     """
 
     ngo_id: str = Field(..., description="UUID of the NGO in Supabase.")
-    title: str = Field(..., description="NGO registration number / identifier.")
-    city: str = Field(..., description="City / region the NGO operates in.")
+    title: str = Field(..., description="Name or identifier of the partner/funder.")
+    city: Optional[str] = Field(None, description="City / region the NGO operates in. null for global funders.")
+    partner_type: Literal[
+        "Global foundations",
+        "AI for Social Good funds",
+        "HNIs & philanthropists",
+        "NGO",
+        "Open grants"
+    ] = Field(..., description="The specific classification of the partner.")
     rank_position: int = Field(..., ge=1, le=4, description="Rank (1 = best).")
     relevance_score: float = Field(..., ge=0.0, le=1.0, description="Match score.")
     inferred_capability: str = Field(
         ..., description="Inferred operational or funding role for this project."
     )
     alignment_reasoning: str = Field(
-        ..., description="Why this NGO's mission aligns with the project goal."
+        ..., description="A compelling explanation of WHY this specific partner/funder was chosen for the goal."
     )
 
 
