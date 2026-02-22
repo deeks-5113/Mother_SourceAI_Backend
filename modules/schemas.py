@@ -36,6 +36,9 @@ class ChannelResponseItem(BaseModel):
     entity_id: str = Field(..., description="UUID of the entity in Supabase.")
     name: str = Field(..., description="Title of the healthcare chunk/channel.")
     type: str = Field(..., description="Source type (hospital / phc / medical_college).")
+    district: Optional[str] = Field(None, description="District of the entity.")
+    lat: Optional[float] = Field(None, description="Latitude for map rendering.")
+    lng: Optional[float] = Field(None, description="Longitude for map rendering.")
     content: Optional[str] = Field(None, description="The actual text content of the chunk.")
     semantic_summary: Optional[str] = Field(None, description="Semantic summary of the chunk's parent section.")
     rank_position: int = Field(..., ge=1, le=10, description="Rank within the result set.")
@@ -50,3 +53,13 @@ class ChannelSearchResponse(BaseModel):
     results: List[ChannelResponseItem] = Field(..., description="Top-4 ranked healthcare channels.")
     district: str
     demographic: str
+
+
+class DistrictEntityItem(BaseModel):
+    """A mappable entity row for district-wide infrastructure visualisation."""
+    entity_id: str = Field(..., description="UUID of the entity in Supabase.")
+    name: str = Field(..., description="Entity title.")
+    type: str = Field(..., description="Source type (hospital / phc / medical_college).")
+    district: str = Field(..., description="District name.")
+    lat: float = Field(..., description="Latitude.")
+    lng: float = Field(..., description="Longitude.")

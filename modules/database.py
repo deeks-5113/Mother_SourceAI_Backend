@@ -170,3 +170,40 @@ class ChannelRepository:
 
         logger.info("Fetched entity: %s", response.data.get("title", entity_id))
         return response.data
+
+    async def list_district_entities(
+        self,
+        district: str,
+        source_type: str | None = None,
+        limit: int = 5000,
+    ) -> List[RawChannel]:
+        """
+        Return mappable entities for a district.
+
+        Only rows with non-null latitude/longitude are returned.
+        """
+        logger.info(
+            "Listing district entities for map â€” district=%s, source_type=%s, limit=%d",
+            district,
+            source_type,
+            limit,
+        )
+        query = (
+            self._client.table("entities")
+            .select("id,title,source_type,district,latitude,longitude")
+            .eq("district", district)
+            .not_.is_("latitude", "null")
+            .not_.is_("longitude", "null")
+            .limit(limit)
+        )
+
+        if source_type:
+            query = query.eq("source_type", source_type)
+
+        response = await asyncio.to_thread(query.execute)
+        if response.data is None:
+            raise RuntimeError("Supabase query for district entities returned no data.")
+
+        entities: List[RawChannel] = response.data
+        logger.info("Retrieved %d mapped entities for district=%r.", len(entities), district)
+        return entities

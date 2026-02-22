@@ -12,7 +12,7 @@ from supabase import Client
 
 from .config import get_settings
 from .database import ChannelRepository
-from .schemas import ChannelResponseItem, ChannelSearchRequest
+from .schemas import ChannelResponseItem, ChannelSearchRequest, DistrictEntityItem
 
 logger = logging.getLogger(__name__)
 
@@ -215,6 +215,9 @@ class ChannelService:
                     entity_id=entity_id,
                     name=item["name"],
                     type=item.get("type", db_row.get("source_type", "hospital")),
+                    district=db_row.get("district"),
+                    lat=db_row.get("latitude"),
+                    lng=db_row.get("longitude"),
                     content=db_row.get("content"),
                     semantic_summary=db_row.get("semantic_summary"),
                     rank_position=int(item["rank_position"]),
@@ -236,3 +239,34 @@ class ChannelService:
         except Exception as exc:
             logger.exception("Embedding API call failed: %s", exc)
             raise RuntimeError(f"Embedding failed: {exc}") from exc
+
+
+class DistrictEntityService:
+    """Read-only service for district map entity retrieval."""
+
+    def __init__(self, supabase_client: Client) -> None:
+        self._repository = ChannelRepository(supabase_client)
+
+    async def list_entities(
+        self,
+        district: str,
+        source_type: str | None = None,
+        limit: int = 5000,
+    ) -> List[DistrictEntityItem]:
+        rows = await self._repository.list_district_entities(
+            district=district,
+            source_type=source_type,
+            limit=limit,
+        )
+        return [
+            DistrictEntityItem(
+                entity_id=str(row["id"]),
+                name=row.get("title", ""),
+                type=row.get("source_type", "hospital"),
+                district=row.get("district", district),
+                lat=float(row["latitude"]),
+                lng=float(row["longitude"]),
+            )
+            for row in rows
+            if row.get("latitude") is not None and row.get("longitude") is not None
+        ]

@@ -85,6 +85,8 @@ def flatten_hrag_structure(
                     "district": district,
                     "environment": env,
                     "source_type": source_type,
+                    "latitude": chunk.get("latitude"),
+                    "longitude": chunk.get("longitude"),
                 }
                 flattened_data.append(item)
 

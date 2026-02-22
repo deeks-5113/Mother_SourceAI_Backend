@@ -13,11 +13,16 @@ CREATE TABLE entities (
   district TEXT,
   environment TEXT,
   source_type TEXT DEFAULT 'hospital',
+  latitude DOUBLE PRECISION,
+  longitude DOUBLE PRECISION,
   embedding VECTOR(1536)
 );
 
 -- Index for vector search (HNSW for production quality)
 CREATE INDEX ON entities USING hnsw (embedding vector_cosine_ops);
+CREATE INDEX IF NOT EXISTS idx_entities_district_geo
+ON entities (district)
+WHERE latitude IS NOT NULL AND longitude IS NOT NULL;
 
 -- RPC for hybrid search (legacy — filters by district AND environment)
 CREATE OR REPLACE FUNCTION search_entities(
