@@ -1,4 +1,4 @@
-# MotherSource AI – Project Documentation
+# MotherSource AI
 
 ## Project Overview
 MotherSource AI is a production-grade backend ecosystem and specialized, state-driven search and recommendation platform.
@@ -6,12 +6,12 @@ MotherSource AI is a production-grade backend ecosystem and specialized, state-d
 ---
 
 ## Problem Statement
-There is a gap between maternal health initiatives and rural field outreach, and traditional keyword search fails on complex maternal health queries.
+Traditional keyword search fails on complex maternal health queries, leaving a gap between maternal health initiatives and rural field outreach.
 
 ---
 
 ## Solution Approach
-The platform leverages a **Hierarchical Retrieval-Augmented Generation (HRAG)** engine to transform unstructured project goals and complex clinical match-making data into precise matches, actionable outreach strategies, and reasoned intelligence.
+The platform leverages a **Hierarchical Retrieval-Augmented Generation (HRAG)** engine. This transforms unstructured project goals and complex clinical match-making data into precise matches, actionable outreach strategies, and reasoned intelligence.
 
 ---
 
@@ -26,51 +26,47 @@ The application serves as a mission-critical tool for connecting expectant mothe
 
 ---
 
+## Impact
+MotherSource AI creates a tangible impact by bridging the critical gap between maternal health needs and healthcare infrastructure. It connects rural and expectant mothers directly to equipped clinical healthcare channels, high-capacity NGOs, and global funders.
+
+By offloading semantic weighting to AI, the system ensures that every outreach and partnership initiated is grounded in data-driven alignment. This ultimately transforms complex clinical matchmaking data into actionable outreach strategies that support and scale maternal health initiatives.
+
+---
+
 # System Architecture Overview
 
-The system utilizes a **3-tier architecture**.
+The system utilizes a modern cloud-native **3-tier architecture**.
 
 ## 1️⃣ Client Tier
 An interaction layer sending JSON-based requests via REST API.
 
 ## 2️⃣ API Gateway & Service Layer
-Built on **FastAPI**, this layer:
-- Handles asynchronous operations  
-- Follows modular architecture  
-- Implements strict service separation  
-- Uses dependency injection  
+Built on **FastAPI** for its asynchronous capabilities, this layer features:
+- Modular architecture  
+- Strict service separation  
+- Dependency injection  
 
 ## 3️⃣ Data Layer
-Powered by the **Supabase Stack**, utilizing:
+The platform uses a **Supabase Stack**, utilizing:
 - PostgreSQL for relational metadata  
 - pgvector for native vector storage and similarity search  
-
----
-
-## Data Flow Pipeline
-
-1. Client request enters FastAPI endpoint  
-2. Query embeddings generated using `text-embedding-3-small`  
-3. Candidate retrieval via Supabase pgvector using HNSW indexing  
-4. Candidates passed to GPT-4o reasoning layer  
-5. JSON API response returned to client  
 
 ---
 
 # Tech Stack
 
 ## Frontend
-- React 19 (Vite)
-- Tailwind CSS 4
-- Framer Motion
+- React 19 (Vite)  
+- Tailwind CSS 4  
+- Framer Motion  
 
 ## Backend
-- FastAPI
-- OpenAI (text-embedding-3-small and GPT-4o)
+- FastAPI  
+- OpenAI (text-embedding-3-small and GPT-4o models)  
 
 ## Database
-- Supabase PostgreSQL
-- pgvector (HNSW Indexing)
+- Supabase PostgreSQL  
+- pgvector (HNSW Indexing)  
 
 ---
 
@@ -92,37 +88,16 @@ Generates persona-driven, multi-channel communication to convert matches into ac
 ## Advanced Features
 
 ### Intelligence Pipeline (HRAG)
-Three-stage process:
+The system operates in three stages:
 1. Metadata filtering for pruning  
-2. Dense vector search using cosine similarity  
+2. Dense vector search utilizing cosine distance for retrieval  
 3. LLM reasoning via GPT-4o for re-ranking and inference  
 
 ### Reasoning Protocol
-UI exposes AI reasoning via an interactive **"Analyze Protocol"** trigger explaining comparative alignment.
+The UI exposes the AI’s internal reasoning via an interactive **"Analyze Protocol"** trigger, explaining comparative alignment based on search parameters.
 
 ### Progressive Loading Design
-Global interceptor overlays high-fidelity animations during HRAG/LLM execution to maintain engagement.
-
----
-
-# Folder Structure
-
-## Frontend Structure
-- Centralized Engine Provider (`useEngine.tsx`) for global state management  
-- `apiService` for backend communication  
-- UI Components:
-  - AuroraHero
-  - EntityCard
-  - ReasoningChain
-  - OutreachCopilot
-
-## Backend Structure
-Strict separation into modules:
-- Onboarding  
-- Partners  
-- Outreach  
-
-Adheres to the **Single Responsibility Principle**.
+A global interceptor obscures the workspace with high-fidelity animations during HRAG/LLM operations to maintain user engagement.
 
 ---
 
@@ -134,7 +109,7 @@ Adheres to the **Single Responsibility Principle**.
 ```
 
 ## Authentication Mechanism
-JSON-based REST API interactions.
+Interactions operate via JSON-based requests over a REST API.
 
 ---
 
@@ -144,8 +119,7 @@ JSON-based REST API interactions.
 ```
 POST /api/v1/channels/search
 ```
-Searches healthcare entities based on district and need.  
-Returns relevance scores and comparative reasoning.
+Searches healthcare entities based on district and need, returning relevance scores and comparative reasoning.
 
 ### Partner Scouting
 ```
@@ -157,7 +131,7 @@ Evaluates and scouts NGOs and Global Funders for project alignment.
 ```
 POST /api/v1/outreach/draft
 ```
-Generates tailored outreach content based on entity ID and clinical parameters.
+Sends an entity ID and clinical parameters to generate tailored, context-aware outreach content.
 
 ---
 
@@ -166,27 +140,27 @@ Generates tailored outreach content based on entity ID and clinical parameters.
 ## Relational Tables
 
 ### entities
-Primary table for healthcare facilities:
-- id
-- title
-- location data
+Primary table for healthcare facilities, containing:
+- id  
+- title  
+- location data  
 
 ### metadata
-Child table containing:
-- num_beds
-- specialties
+Child table for entities containing:
+- num_beds  
+- specialties  
 
 ### ngos / funders
-Dedicated tables containing:
-- description
-- level attributes
+Dedicated tables for partners containing:
+- description  
+- level attributes  
 
 ---
 
-## Vector Implementation
+# Vector Implementation
 
-- Embedding column type: `vector(1536)`
-- Indexing Strategy: **HNSW (Hierarchical Navigable Small Worlds)**
+- Embedding column type: `vector(1536)`  
+- Indexing strategy: **HNSW (Hierarchical Navigable Small Worlds)**  
 
 HNSW provides significantly faster lookup speeds for small to medium datasets compared to IVF.
 
@@ -194,40 +168,26 @@ HNSW provides significantly faster lookup speeds for small to medium datasets co
 
 # Performance Considerations
 
-## Frontend Optimization
-- Vite HMR for rapid feedback cycles  
-- Framer Motion popLayout to prevent layout thrashing  
-- Selective hydration for optimized localStorage sync  
+## Frontend Rendering Optimization
+- Vite HMR ensures near-instant developer feedback cycles  
+- Framer Motion popLayout optimizes DOM transitions  
+- Selective hydration syncs only critical state objects to localStorage  
 
 ## Backend Retrieval
-- HNSW indexing ensures sub-second vector retrieval  
+- HNSW indexing ensures sub-second retrieval from the vector space  
 
 ## Entity Resolution
-- UUID-based entity keys  
-- Custom merge logic prevents duplicate NGO/Funder results  
+- All entities are keyed by unique UUIDs  
+- Custom merge logic deduplicates results when querying NGOs and Funders  
 
 ---
 
-# Installation, Setup, Deployment & Security
+# Installation, Setup, Deployment, Security & Future Improvements
 
-Installation commands, environment variables, deployment processes, and security configurations follow the standardized best practices of:
+Installation commands, environment variable requirements, deployment procedures, security protocols, and contribution guidelines follow standard **React 19** and **FastAPI** conventions.
 
-- React 19  
-- FastAPI  
-- Cloud-native application deployment  
-
-Codebase access requires adherence to established DevOps and infrastructure standards.
+Codebase access requires adherence to cloud-native application deployment best practices.
 
 ---
 
-# Future Improvements
-
-Future enhancements will align with:
-- Scalable vector database optimization  
-- Expanded HRAG reasoning layers  
-- Extended NGO/Funder intelligence mapping  
-- Advanced outreach personalization models  
-
----
-
-**End of Documentation**
+**End of Document**
