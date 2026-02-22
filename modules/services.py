@@ -32,13 +32,20 @@ RULES — read carefully:
 3. Each object MUST have these fields (and only these fields):
    - "entity_id"            : string  — copy verbatim from the candidate list
    - "name"                 : string  — copy verbatim from the candidate list
-   - "type"                 : string  — copy verbatim from the candidate list
+   - "type"                 : string  — copy the "source_type" field verbatim
    - "rank_position"        : integer — starting from 1
    - "relevance_score"      : float   — between 0.0 and 1.0
    - "comparative_reasoning": string  — explain why this entity is relevant
                                to the outreach need. If there are multiple
                                candidates, reference adjacent ranks explicitly.
 4. Order the array by rank_position ascending (rank 1 first).
+
+DIVERSITY REQUIREMENT:
+- Each candidate has a "source_type" field (hospital, phc, or medical_college).
+- You MUST select exactly 2 hospitals, 1 PHC, and 1 medical college when all
+  three types are available in the candidate pool.
+- If a category has zero candidates, fill the gap from the most relevant
+  remaining candidates of other types.
 """
 
 _USER_PROMPT_TEMPLATE = """\
@@ -65,7 +72,7 @@ class LLMReasoningService:
             {
                 "entity_id": str(c.get("id", "")),
                 "name": c.get("title", ""),
-                "type": c.get("environment", ""),
+                "source_type": c.get("source_type", "hospital"),
                 "content": c.get("content", ""),
                 "semantic_summary": c.get("semantic_summary", ""),
                 "district": c.get("district", ""),
@@ -144,23 +151,60 @@ class ChannelService:
     async def find_top_channels(self, request: ChannelSearchRequest) -> List[ChannelResponseItem]:
         query_vector = await self._embed_text(request.specific_need)
 
-        candidates = self._repository.search_by_district(
-            query_vector=query_vector,
-            district=request.district,
-            limit=self._settings.candidate_pool_size,
-        )
+        # --- Diversified search: 3 typed queries ---
+        # Fetch candidates per source type to ensure the LLM has a diverse pool
+        type_quotas = {
+            "hospital": 4,          # fetch more so LLM can pick best 2
+            "phc": 2,
+            "medical_college": 2,
+        }
 
-        if not candidates:
+        all_candidates: List[Dict[str, Any]] = []
+        for source_type, limit in type_quotas.items():
+            try:
+                typed_hits = await self._repository.search_by_district_and_type(
+                    query_vector=query_vector,
+                    district=request.district,
+                    source_type=source_type,
+                    limit=limit,
+                )
+                all_candidates.extend(typed_hits)
+            except Exception as exc:
+                logger.warning(
+                    "Typed search failed for source_type=%s: %s — falling back.",
+                    source_type, exc,
+                )
+
+        # Fallback: if no typed results at all, use the regular district search
+        if not all_candidates:
+            logger.info(
+                "No typed candidates found; falling back to district-only search for district=%r.",
+                request.district,
+            )
+            all_candidates = await self._repository.search_by_district(
+                query_vector=query_vector,
+                district=request.district,
+                limit=self._settings.candidate_pool_size,
+            )
+
+        if not all_candidates:
             logger.info("No candidates found in DB for district=%r; skipping LLM ranking.", request.district)
             return []
 
+        # Log the composition of the candidate pool
+        type_counts = {}
+        for c in all_candidates:
+            st = c.get("source_type", "unknown")
+            type_counts[st] = type_counts.get(st, 0) + 1
+        logger.info("Candidate pool composition: %s", type_counts)
+
         ranked_raw = await self._llm_service.rank_and_reason(
             specific_need=request.specific_need,
-            candidates=candidates,
+            candidates=all_candidates,
         )
 
         results = []
-        candidate_map = {str(c["id"]): c for c in candidates}
+        candidate_map = {str(c["id"]): c for c in all_candidates}
         
         for item in ranked_raw:
             entity_id = str(item["entity_id"])
@@ -170,7 +214,7 @@ class ChannelService:
                 ChannelResponseItem(
                     entity_id=entity_id,
                     name=item["name"],
-                    type=item.get("type", db_row.get("environment", "General")),
+                    type=item.get("type", db_row.get("source_type", "hospital")),
                     content=db_row.get("content"),
                     semantic_summary=db_row.get("semantic_summary"),
                     rank_position=int(item["rank_position"]),

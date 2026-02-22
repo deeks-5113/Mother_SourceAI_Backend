@@ -4,6 +4,7 @@ modules/database.py
 Data-access layer for Supabase interactions.
 """
 
+import asyncio
 import logging
 from typing import Any, Dict, List
 from supabase import Client
@@ -18,7 +19,7 @@ class ChannelRepository:
     def __init__(self, supabase_client: Client) -> None:
         self._client = supabase_client
 
-    def search_by_district(
+    async def search_by_district(
         self,
         query_vector: List[float],
         district: str,
@@ -31,14 +32,16 @@ class ChannelRepository:
             district, limit,
         )
 
-        response = self._client.rpc(
-            "search_entities_by_district",
-            {
-                "query_embedding": query_vector,
-                "filter_district": district,
-                "match_count": limit,
-            },
-        ).execute()
+        response = await asyncio.to_thread(
+            lambda: self._client.rpc(
+                "search_entities_by_district",
+                {
+                    "query_embedding": query_vector,
+                    "filter_district": district,
+                    "match_count": limit,
+                },
+            ).execute()
+        )
 
         if response.data is None:
             raise RuntimeError("Supabase RPC 'search_entities_by_district' returned no data.")
@@ -55,7 +58,7 @@ class ChannelRepository:
         return candidates
 
     # Legacy method kept for backward compatibility
-    def search_similar_channels(
+    async def search_similar_channels(
         self,
         query_vector: List[float],
         district: str,
@@ -68,15 +71,17 @@ class ChannelRepository:
             district, environment, limit,
         )
 
-        response = self._client.rpc(
-            "search_entities",
-            {
-                "query_embedding": query_vector,
-                "filter_district": district,
-                "filter_environment": environment,
-                "match_count": limit,
-            },
-        ).execute()
+        response = await asyncio.to_thread(
+            lambda: self._client.rpc(
+                "search_entities",
+                {
+                    "query_embedding": query_vector,
+                    "filter_district": district,
+                    "filter_environment": environment,
+                    "match_count": limit,
+                },
+            ).execute()
+        )
 
         if response.data is None:
             raise RuntimeError("Supabase RPC 'search_entities' returned no data.")
@@ -90,6 +95,44 @@ class ChannelRepository:
                 district, environment
             )
 
+        return candidates
+
+    async def search_by_district_and_type(
+        self,
+        query_vector: List[float],
+        district: str,
+        source_type: str,
+        limit: int = 10,
+    ) -> List[RawChannel]:
+        """Call the `search_entities_by_district_and_type` RPC — filters by
+        district and source_type, then ranks by semantic similarity."""
+        logger.info(
+            "Searching HRAG entities — district=%s, source_type=%s, limit=%d",
+            district, source_type, limit,
+        )
+
+        response = await asyncio.to_thread(
+            lambda: self._client.rpc(
+                "search_entities_by_district_and_type",
+                {
+                    "query_embedding": query_vector,
+                    "filter_district": district,
+                    "filter_source_type": source_type,
+                    "match_count": limit,
+                },
+            ).execute()
+        )
+
+        if response.data is None:
+            raise RuntimeError(
+                "Supabase RPC 'search_entities_by_district_and_type' returned no data."
+            )
+
+        candidates: List[RawChannel] = response.data
+        logger.info(
+            "Retrieved %d candidate chunk(s) for source_type=%s.",
+            len(candidates), source_type,
+        )
         return candidates
 
     # -------------------------------------------------------------------------

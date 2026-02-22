@@ -50,6 +50,7 @@ def flatten_hrag_structure(
     data: Dict[str, Any],
     override_district: str | None = None,
     override_environment: str | None = None,
+    source_type: str = "hospital",
 ) -> List[Dict[str, Any]]:
     """Flatten the nested HRAG structure into individual chunks with metadata.
 
@@ -83,6 +84,7 @@ def flatten_hrag_structure(
                     "source_id": chunk.get("source_id", ""),
                     "district": district,
                     "environment": env,
+                    "source_type": source_type,
                 }
                 flattened_data.append(item)
 
@@ -105,6 +107,7 @@ def ingest_file(
     settings: Any,
     override_district: str | None = None,
     override_environment: str | None = None,
+    source_type: str = "hospital",
 ):
     """Process and ingest a single HRAG JSON file."""
     logger.info("Processing file: %s", file_path)
@@ -113,10 +116,10 @@ def ingest_file(
         logger.error("File not found: %s", file_path)
         sys.exit(1)
 
-    with open(file_path, "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8-sig") as f:
         data = json.load(f)
 
-    flattened_items = flatten_hrag_structure(data, override_district, override_environment)
+    flattened_items = flatten_hrag_structure(data, override_district, override_environment, source_type)
     total = len(flattened_items)
     logger.info("Found %d chunks to ingest from %s", total, file_path)
 
@@ -173,6 +176,12 @@ def main():
         default=None,
         help="Override environment for ALL chunks (default: 'General')",
     )
+    parser.add_argument(
+        "--source-type",
+        default="hospital",
+        choices=["hospital", "phc", "medical_college"],
+        help="Tag all chunks with this source type (default: 'hospital')",
+    )
     args = parser.parse_args()
 
     settings = get_settings()
@@ -191,6 +200,7 @@ def main():
         settings=settings,
         override_district=args.district,
         override_environment=args.environment,
+        source_type=args.source_type,
     )
 
 

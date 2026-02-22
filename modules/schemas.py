@@ -35,7 +35,7 @@ class ChannelResponseItem(BaseModel):
     """A single ranked healthcare channel returned by the service."""
     entity_id: str = Field(..., description="UUID of the entity in Supabase.")
     name: str = Field(..., description="Title of the healthcare chunk/channel.")
-    type: str = Field(..., description="Environment type (Urban/Rural/General).")
+    type: str = Field(..., description="Source type (hospital / phc / medical_college).")
     content: Optional[str] = Field(None, description="The actual text content of the chunk.")
     semantic_summary: Optional[str] = Field(None, description="Semantic summary of the chunk's parent section.")
     rank_position: int = Field(..., ge=1, le=10, description="Rank within the result set.")

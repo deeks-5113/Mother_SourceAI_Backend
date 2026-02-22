@@ -257,7 +257,7 @@ class PartnerService:
         query_vector = await self._embed_text(request.project_goal)
 
         # Step 2 — Retrieve candidate NGOs from Supabase
-        candidates = self._repo.match_ngos_by_region(
+        candidates = await self._repo.match_ngos_by_region(
             query_vector=query_vector,
             region=request.target_region,
             limit=self._pool_size,

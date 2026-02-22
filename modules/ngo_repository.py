@@ -5,6 +5,7 @@ Data-access layer for the `ngos` table in Supabase.
 Kept separate from database.py (ChannelRepository) to maintain SRP.
 """
 
+import asyncio
 import logging
 from typing import Any, Dict, List
 
@@ -25,7 +26,7 @@ class NgoRepository:
     # Semantic search — used by outreach / matching services
     # ------------------------------------------------------------------
 
-    def search_similar_ngos(
+    async def search_similar_ngos(
         self,
         query_vector: List[float],
         city: str,
@@ -44,14 +45,16 @@ class NgoRepository:
             "Searching NGOs — city=%s, limit=%d", city, limit
         )
 
-        response = self._client.rpc(
-            "search_ngos",
-            {
-                "query_embedding": query_vector,
-                "filter_city": city,
-                "match_count": limit,
-            },
-        ).execute()
+        response = await asyncio.to_thread(
+            lambda: self._client.rpc(
+                "search_ngos",
+                {
+                    "query_embedding": query_vector,
+                    "filter_city": city,
+                    "match_count": limit,
+                },
+            ).execute()
+        )
 
         if response.data is None:
             raise RuntimeError("Supabase RPC 'search_ngos' returned no data.")
@@ -64,7 +67,7 @@ class NgoRepository:
 
         return results
 
-    def match_ngos_by_region(
+    async def match_ngos_by_region(
         self,
         query_vector: List[float],
         region: str,
@@ -99,14 +102,16 @@ class NgoRepository:
             "Matching NGOs by region — region=%r, limit=%d", region, limit
         )
 
-        response = self._client.rpc(
-            "match_ngos",
-            {
-                "query_embedding": query_vector,
-                "filter_region": region,
-                "match_count": limit,
-            },
-        ).execute()
+        response = await asyncio.to_thread(
+            lambda: self._client.rpc(
+                "match_ngos",
+                {
+                    "query_embedding": query_vector,
+                    "filter_region": region,
+                    "match_count": limit,
+                },
+            ).execute()
+        )
 
         if response.data is None:
             raise RuntimeError("Supabase RPC 'match_ngos' returned no data.")
